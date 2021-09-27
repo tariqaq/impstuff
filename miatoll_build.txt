@@ -1,0 +1,22 @@
+
+mkdir needed folders ofc
+
+cd ~/android/lineage
+
+run the git script to setup env - https://github.com/akhilnarang/scripts
+
+repo init --depth=1 -u https://github.com/LineageOS/android.git -b lineage-18.1
+
+repo -c sync
+
+source build/envsetup.sh
+
+git clone https://gitlab.com/the-muppets/proprietary_vendor_xiaomi.git vendor/xiaomi --depth=1
+
+breakfast miatoll
+
+croot
+
+brunch miatoll
+
+cd $OUT
