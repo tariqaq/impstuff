@@ -1,0 +1,102 @@
+tmux # get into tmux
+
+ctrl+B " # split horizontally
+
+ctrl+B Q $anyno. # switch to any pane
+
+ls /sys/class/power_supply/ # list batteries
+
+watch -n 10 cat /sys/class/power_supply/BAT$/capacity # watch battery level each 10 seconds
+
+ctrl+B : -- :resize-pane -U 10 # move pane up by 10 lines
+
+ctrl+B Q $anyno. # switch to any pane
+
+ls /sys/firmware/efi/efivars # chek efi mode
+
+iwctl # connect to wifi
+
+ping google.com # chek internet (or ip addr)
+
+timedatectl set-ntp true # update sys clock
+
+cfdisk # partition disks /root /swap efi(existing)
+
+mkfs.ext4 /dev/nvmexxx # format / as ext4 
+
+mkswap /dev/nvmexxx # format as swap
+
+mount /dev/nvmexxx /mnt # mount /
+
+swapon /dev/nvmexxx # turn on swap
+
+mkdir /mnt/efi && mount /dev/nvmexxx /mnt/efi # make /mnt/efi mnt point and mount efi to it
+
+add the following to pacmans repo
+#Server = http://mirrors.bfsu.edu.cn/archlinux/$repo/os/$arch
+#Server = https://mirrors.bfsu.edu.cn/archlinux/$repo/os/$arch
+
+pacstrap /mnt base base-devel linux-zen linux-firmware linux-zen-headers nano micro sudo wget curl git amd-ucode grub efibootmgr os-prober networkmanager net-tools wireless_tools terminus-font mtools dosfstools# install packages to the new root partition
+
+genfstab -U /mnt >> /mnt/etc/fstab # gen fstab config
+
+arch-chroot /mnt # chroot into new installation
+
+ln -sf /usr/share/zoneinfo/Asia/Kuwait /etc/localtime # change to kuwait time
+
+hwclock --systohc # sync clock
+
+nano /etc/locale.gen # uncomment en_us.utf-8
+
+locale-gen # gen locale
+
+echo LANG=en_US.UTF-8 | tee /etc/locale.conf # add lang to conf
+
+echo magik | tee /etc/hostname # set pcname
+
+nano /etc/hosts # put following in hosts
+
+127.0.0.1	localhost
+::1		    localhost
+127.0.1.1	magik.localdomain magik
+
+passwd # change root paswd duh
+
+useradd -m -G wheel,audio,video trqaq # create sudo/main user
+
+passwd trqaq # passwd for main user duh
+
+EDITOR=nano visudo # remove comment infront of wheel access line
+
+add this in /etc/defualt/grub --> GRUB_DISABLE_OS_PROBER=false # enable osprober
+
+grub-install --target=x86_64-efi --efi-directory=/efi/ --bootloader-id=archyboi # install grub duh
+
+grub-mkconfig -o /boot/grub/grub.cfg # gen new grub config
+
+sudo systemctl enable NetworkManager
+
+exit # exit outta chroot duh 
+
+reboot
+
+nano /etc/systemd/journald.conf # edit and put the below
+SystemMaxUse=50M
+
+use nmcli to connect to wifi
+
+sudo systemctl reboot
+
+edit pacman.conf to include multilib
+
+sudo pacman -Syu --needed xorg xf86-video-amdgpu mesa lib32-mesa sddm
+
+sudo systemctl reboot
+
+sudo pacman -Syu --needed plasma ark kcalc krunner dolphin dolphin-plugins elisa vlc filelight gwenview kalarm kamera kamoso kate kcron kdeconnect kdenetwork-filesharing kdf kdialog keditbookmarks kfind kmix knotes kompare konqueror konsole kontrast ktimer kwrite markdownpart okular partitionmanager spectacle svgpart sweeper yakuake zeroconf-ioslave plasma-nm packagekit-qt5 bluez bluez-utils pulseaudio pulseaudio-bluetooth pulseaudio-zeroconf plasma-pa
+
+sudo systemctl enable bluetooth.service
+
+sudo systemctl enable sddm
+
+sudo nano /usr/lib/sddm/sddm.conf.d/default.conf - [Theme]Current=breeze
