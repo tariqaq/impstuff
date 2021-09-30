@@ -1,0 +1,21 @@
+#connect to internet using iwctl b4 running script
+#partition disks b4 runnning script with cfdisk -_-
+
+#Verify its in EFI mode
+ls /sys/firmware/efi/efivars
+sleep 5
+
+#Ping for cheking internet connectivity
+ping -c 5 archlinux.org
+sleep 5
+
+#Auto sync clock and set to Kuwait Time
+timedatectl set-ntp true > /dev/null && timedatectl set-timezone Asia/Kuwait > /dev/null && timedatectl status
+sleep 5
+
+#Mount the partitions
+read -p "Enter Boot Partition Path: " bootpath
+sleep 5
+mkdir /mnt/efi
+sleep 2
+mount $bootpath /mnt/efi
