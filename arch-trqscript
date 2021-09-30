@@ -2,20 +2,51 @@
 #partition disks b4 runnning script with cfdisk -_-
 
 #Verify its in EFI mode
+clear
+echo "Verifying EFI boot mode" 
+echo "----------------------------------------------------------------"
 ls /sys/firmware/efi/efivars
 sleep 5
+echo "----------------------------------------------------------------"
 
 #Ping for cheking internet connectivity
+echo "Pinging for Connectivity Check"
 ping -c 5 archlinux.org
 sleep 5
+echo "----------------------------------------------------------------"
 
 #Auto sync clock and set to Kuwait Time
+echo "Syncing Time and Setting it to Kuwait"
 timedatectl set-ntp true > /dev/null && timedatectl set-timezone Asia/Kuwait > /dev/null && timedatectl status
 sleep 5
+echo "----------------------------------------------------------------"
+
+#Format Partitions
+#Swap part
+echo "Formatting Swap Partition"
+read -p "Enter Swap Partition Path: " swappath
+mkswap $swappath 
+#Root part
+echo "Formatting Root Partition"
+read -p "Enter Root / Partition Path: " rootpath
+mkfs.ext4 $rootpath 
+echo "----------------------------------------------------------------"
 
 #Mount the partitions
+#EFI part
+echo "Mounting EFI Partition"
 read -p "Enter Boot Partition Path: " bootpath
-sleep 5
 mkdir /mnt/efi
 sleep 2
 mount $bootpath /mnt/efi
+sleep 1 
+lsblk | grep $bootpath
+#Swap part
+echo "Turning on Swap"
+swapon $swappath
+#Root part
+echo "Mounting Root Partition"
+mount $rootpath /mnt
+sleep 1
+lsblk
+echo "----------------------------------------------------------------"
