@@ -23,9 +23,12 @@ echo "----------------------------------------------------------------"
 
 #Format Partitions
 #Swap part
+lsblk
+sleep 2
 echo "Formatting Swap Partition"
 read -p "Enter Swap Partition Path: " swappath
 mkswap $swappath 
+echo "----------------------------------------------------------------"
 #Root part
 echo "Formatting Root Partition"
 read -p "Enter Root / Partition Path: " rootpath
@@ -34,19 +37,25 @@ echo "----------------------------------------------------------------"
 
 #Mount the partitions
 #EFI part
+lsblk
+sleep 2
 echo "Mounting EFI Partition"
 read -p "Enter Boot Partition Path: " bootpath
 mkdir /mnt/efi
 sleep 2
 mount $bootpath /mnt/efi
 sleep 1 
-lsblk | grep $bootpath
+echo "----------------------------------------------------------------"
 #Swap part
 echo "Turning on Swap"
 swapon $swappath
+sleep 1
+echo "----------------------------------------------------------------"
 #Root part
 echo "Mounting Root Partition"
 mount $rootpath /mnt
 sleep 1
 lsblk
 echo "----------------------------------------------------------------"
+
+
