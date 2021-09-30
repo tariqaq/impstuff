@@ -33,6 +33,7 @@ echo "----------------------------------------------------------------"
 echo "Formatting Root Partition"
 read -p "Enter Root / Partition Path: " rootpath
 mkfs.ext4 $rootpath 
+sleep 5
 echo "----------------------------------------------------------------"
 
 #Mount the partitions
@@ -56,6 +57,38 @@ echo "Mounting Root Partition"
 mount $rootpath /mnt
 sleep 1
 lsblk
+sleep 5
 echo "----------------------------------------------------------------"
 
+#Changing the mirrors to bfsu
+echo "Changing mirrors to bfsu for better speeds"
+sleep 1
+echo "Fetching mirrorlist" 
+wget --no-check-certificate bit.ly/installmirrorlist
+echo "----------------------------------------------------------------"
+echo "Setting up new mirrorlist"
+mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist_og
+sleep 1
+mv mirrorlist /etc/pacman.d/mirrorlist
+sleep 1
+echo "Heres the new mirrors"
+cat /etc/pacman.d/mirrorlist
+sleep 5
+echo "----------------------------------------------------------------"
+
+#pacstrapping packs to new chroot/installation
+echo "Pacstrapping new packs to /mnt" 
+pacstrap --/mnt base base-devel linux-zen linux-firmware linux-zen-headers nano micro sudo wget curl git amd-ucode grub efibootmgr os-prober networkmanager net-tools wireless_tools terminus-font mtools dosfstools
+sleep 5
+echo "----------------------------------------------------------------"
+
+#gen new fstab 
+echo "Gen New Fstab"
+genfstab -U /mnt >> /mnt/etc/fstab
+sleep 5
+echo "----------------------------------------------------------------"
+
+#chroot into new system
+echo "Chrooting into new system, enjoy!"
+arch-chroot /mnt
 
