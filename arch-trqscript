@@ -71,7 +71,7 @@ echo "----------------------------------------------------------------"
 echo "Changing mirrors to bfsu for better speeds"
 sleep 1
 echo "Fetching mirrorlist" 
-wget --no-check-certificate --output-document mirrorlist bit.ly/installmirrorlist
+curl -L -o mirrorlist bit.ly/installmirrorlist
 echo "----------------------------------------------------------------"
 echo "Setting up new mirrorlist"
 sleep 1
