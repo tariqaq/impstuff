@@ -71,21 +71,24 @@ echo "----------------------------------------------------------------"
 echo "Changing mirrors to bfsu for better speeds"
 sleep 1
 echo "Fetching mirrorlist" 
-wget --no-check-certificate bit.ly/installmirrorlist
+wget --no-check-certificate --output-document mirrorlist bit.ly/installmirrorlist
 echo "----------------------------------------------------------------"
 echo "Setting up new mirrorlist"
+sleep 1
+echo "Backing Up Old Mirrorlist as mirrorlist_og"
 mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist_og
 sleep 1
+echo "Moving the New Mirrorlist to Pacman.d"
 mv mirrorlist /etc/pacman.d/mirrorlist
 sleep 1
-echo "Heres the new mirrors"
+echo "Heres the new mirrorlist in pacman.d"
 cat /etc/pacman.d/mirrorlist
 sleep 5
 echo "----------------------------------------------------------------"
 
 #pacstrapping packs to new chroot/installation
 echo "Pacstrapping new packs to /mnt" 
-pacstrap --/mnt base base-devel linux-zen linux-firmware linux-zen-headers nano micro sudo wget curl git amd-ucode grub efibootmgr os-prober networkmanager net-tools wireless_tools terminus-font mtools dosfstools
+pacstrap /mnt base base-devel linux-zen linux-firmware linux-zen-headers nano micro sudo wget curl git amd-ucode grub efibootmgr os-prober networkmanager net-tools wireless_tools terminus-font mtools dosfstools
 sleep 5
 echo "----------------------------------------------------------------"
 
