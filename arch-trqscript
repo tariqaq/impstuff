@@ -1,6 +1,13 @@
 #connect to internet using iwctl b4 running script
 #partition disks b4 runnning script with cfdisk -_-
 
+#change tty font
+echo "Changing TTY Font"
+setfont ter-c32n.psf.gz
+echo "Hows the new font :) "
+sleep 5
+echo "----------------------------------------------------------------"
+
 #Verify its in EFI mode
 clear
 echo "Verifying EFI boot mode" 
@@ -90,5 +97,7 @@ echo "----------------------------------------------------------------"
 
 #chroot into new system
 echo "Chrooting into new system, enjoy!"
+echo "----------------------------------------------------------------"
+sleep 5
 arch-chroot /mnt
 
