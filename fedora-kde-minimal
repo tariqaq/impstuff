@@ -76,6 +76,7 @@ dnf install \
   kcalc \
   gwenview \
   spectacle \
+  kpackagekit \
   fedora-workstation-repositories
   
 #finish the installation
