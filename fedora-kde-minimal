@@ -78,3 +78,10 @@ dnf install \
   spectacle \
   fedora-workstation-repositories
   
+#finish the installation
+echo "INSTALL DONE!"
+sleep 1
+systemctl enable sddm
+sleep 1
+systemctl set-default graphical.target
+  
