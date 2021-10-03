@@ -37,7 +37,6 @@ dnf install \
   konsole5 \
   kscreen \
   kscreenlocker \
-  ksshaskpass \
   ksysguard \
   kwebkitpart \
   kwin \
@@ -67,4 +66,15 @@ dnf install \
   sddm-kcm \
   setroubleshoot \
   sni-qt \
-  xorg-x11-drv-libinput
+  xorg-x11-drv-libinput \
+  @"Printing Support" \
+  @"Input Methods" \
+  @"Multimedia" \
+  kfind \
+  plasma-discover \
+  ark \
+  kcalc \
+  gwenview \
+  spectacle \
+  fedora-workstation-repositories
+  
