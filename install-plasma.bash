@@ -14,7 +14,7 @@ sudo pacman -Syu --needed \
   kinfocenter \
   kmenuedit \
   kscreen \
-  kscreenlocker
+  kscreenlocker \
   ksystemstats \
   kwin \
   kwrited \
