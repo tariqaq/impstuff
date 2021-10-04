@@ -3,7 +3,7 @@
 
 #change tty font
 echo "Changing TTY Font"
-setfont ter-c32n.psf.gz
+setfont ter-c20n.psf.gz
 echo "Hows the new font :) "
 sleep 5
 echo "----------------------------------------------------------------"
