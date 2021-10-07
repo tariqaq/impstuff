@@ -20,11 +20,11 @@ sudo pacman -Syu --needed \
   kwrited \
   libkscreen \
   libksysguard \
-  plasma-browser-integeration \
+  plasma-browser-integration \
   plasma-desktop \
   plasma-disks \
   plasma-firewall \
-  plasma-integeration \
+  plasma-integration \
   plasma-nm \
   plasma-pa \
   plasma-sdk \
@@ -38,12 +38,12 @@ sudo pacman -Syu --needed \
   xdg-desktop-portal-kde \
   ark \
   cantor \
+  cervisia \
   dolphin \
   dolphin-plugins \
   elisa \
-  vlc \
-  ffmpeg \
   ffmpegthumbs \
+  ffmpeg \
   filelight \
   gwenview \
   kalarm \
@@ -55,25 +55,28 @@ sudo pacman -Syu --needed \
   kcalc \
   kcolorchooser \
   kcron \
+  kdebugsettings \
   kdeconnect \
-  kdegraphics-mobipocket \
+  kde-graphics-mobipocket \
   kdegraphics-thumbnailers \
   kdenetwork-filesharing \
+  kdesdk-kioslaves \
+  kdesdk-thumbnailers \
   kdf \
   kdialog \
   keditbookmarks \
   kfind \
-  kget \
-  kgpg \
-  kdesdk-kioslaves \
-  kdesdk-thumbnailers \
   kio-extras \
   kio-gdrive \
+  kipi-plugins \
   knotes \
   gimp \
-  kcompare \
+  kcolourpaint \
+  kompare \
   konsole \
+  ksystemlog \
   ktimer \
+  kwrite \
   okular \
   partitionmanager \
   print-manager \
